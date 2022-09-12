@@ -20,6 +20,6 @@ function validarUsuario() {
     }    
 }
 
-//invocando las funciones
+//invocando las funciones otra vez
 intentosLogin();
 validarUsuario();
