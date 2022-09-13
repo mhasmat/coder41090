@@ -36,3 +36,23 @@ const iniciarSesion = () => {
 const botonSesion = document.getElementById('sesion');
 //evento a disparar con el boton
 botonSesion.addEventListener('click', iniciarSesion);
+
+//incorporando arrays
+const productos = [
+    { id: 1, titulo: "Cupcakes", precio: 500 },
+    { id: 2, titulo: "Alfajorcitos", precio: 100 },
+    { id: 3, titulo: "Petit Fours", precio: 800 },
+    { id: 4, titulo: "Cookies", precio: 900 },     
+];
+
+for (let prod of productos) {
+    console.log(prod.id);
+    console.log(prod.titulo);
+    console.log(prod.precio);    
+}
+
+
+
+
+
+
