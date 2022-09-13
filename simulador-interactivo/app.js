@@ -36,3 +36,29 @@ const iniciarSesion = () => {
 const botonSesion = document.getElementById('sesion');
 //evento a disparar con el boton
 botonSesion.addEventListener('click', iniciarSesion);
+
+const API_URL = 'http://localhost:3000';
+
+const contenedor = document.getElementById('contenedor-productos');
+
+const ul = document.createElement('ul');
+
+// const HTMLResponse = document.querySelector('app');
+
+fetch(`${API_URL}/productos`)
+  .then((response) => response.json())
+  .then((productos) => {
+    productos.forEach((producto) => {
+      const div = document.createElement('div');
+      div.classList.add('producto');
+      div.innerHTML = `
+              <img src=${producto.img} alt="">
+              <h4>${producto.nombre}</h4>
+              <p>${producto.descripcion}</p>
+              <p>${producto.precio}</p>    
+              `;
+      contenedor.appendChild(div);
+    });
+  });
+
+// HTMLResponse.appendChild(ul);
