@@ -37,13 +37,10 @@ const botonSesion = document.getElementById('sesion');
 //evento a disparar con el boton
 botonSesion.addEventListener('click', iniciarSesion);
 
+//seccion tarjetas
 const API_URL = 'http://localhost:3000';
 
 const contenedor = document.getElementById('contenedor-productos');
-
-const ul = document.createElement('ul');
-
-// const HTMLResponse = document.querySelector('app');
 
 fetch(`${API_URL}/productos`)
   .then((response) => response.json())
@@ -55,10 +52,10 @@ fetch(`${API_URL}/productos`)
               <img src=${producto.img} alt="">
               <h4>${producto.nombre}</h4>
               <p>${producto.descripcion}</p>
-              <p>${producto.precio}</p>    
+              <p>${producto.precio}</p>
+              <button class="btn btn-warning btn-comprar">Comprar</button>
+              <button class="btn btn-success btn-carrito">Carrito</button>
               `;
       contenedor.appendChild(div);
     });
   });
-
-// HTMLResponse.appendChild(ul);
