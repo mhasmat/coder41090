@@ -74,3 +74,20 @@ fetch(`${apiData}`)
       });
     });
   });
+
+const lista = document.querySelector('#listaCarrito');
+
+let products = [
+  { nombre: 'Cupcakes', precio: 500 },
+  { nombre: 'Alfajorcitos', precio: 100 },
+  { nombre: 'Petit Fours', precio: 800 },
+  { nombre: 'Cookies', precio: 900 },
+];
+
+let listado = products.forEach((item) => {
+  document.write(item.nombre);
+});
+
+let li = document.createElement('li');
+li.innerHTML = listado;
+lista.appendChild(li);
