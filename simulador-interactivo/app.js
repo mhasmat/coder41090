@@ -38,24 +38,39 @@ const botonSesion = document.getElementById('sesion');
 botonSesion.addEventListener('click', iniciarSesion);
 
 //seccion tarjetas
-const API_URL = 'http://localhost:3000';
-
+const apiData = '../productos.json';
+//capturo el contenedor de las tarjetas
 const contenedor = document.getElementById('contenedor-productos');
 
-fetch(`${API_URL}/productos`)
+//llamada al endpoint donde está la data
+fetch(`${apiData}`)
   .then((response) => response.json())
   .then((productos) => {
+    //recorro el array de objetos con el forEach
     productos.forEach((producto) => {
+      //creo un elemento de tipo div
       const div = document.createElement('div');
+      //le agrego la clase producto al div
       div.classList.add('producto');
+      //inyecto la data en el html
       div.innerHTML = `
-              <img src=${producto.img} alt="">
+              <img src=${producto.img} alt="${producto.nombre}" id="img-tarjetas">
               <h4>${producto.nombre}</h4>
               <p>${producto.descripcion}</p>
               <p>${producto.precio}</p>
               <button class="btn btn-warning btn-comprar">Comprar</button>
               <button class="btn btn-success btn-carrito">Carrito</button>
               `;
+      //le agrego el hijo(div) al padre(contenedor)
       contenedor.appendChild(div);
+
+      //funcion ampliar
+      let visor = document.getElementById('visor-img');
+      let imgTarjetas = document.getElementById('img-tarjetas');
+      productos.forEach(() => {
+        imgTarjetas.addEventListener('click', function ampliar() {
+          imgTarjetas.style.transform = 'scale(1.9)';
+        });
+      });
     });
   });
