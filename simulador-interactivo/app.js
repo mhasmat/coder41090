@@ -38,6 +38,7 @@ const botonSesion = document.getElementById('sesion');
 botonSesion.addEventListener('click', iniciarSesion);
 
 //incorporando arrays
+//interactuar con HTML
 const productos = [
     { id: 1, titulo: "Cupcakes", precio: 500 },
     { id: 2, titulo: "Alfajorcitos", precio: 100 },
@@ -45,10 +46,16 @@ const productos = [
     { id: 4, titulo: "Cookies", precio: 900 },     
 ];
 
+//recorriendo el array de objetos
 for (let prod of productos) {
-    console.log(prod.id);
-    console.log(prod.titulo);
-    console.log(prod.precio);    
+    //creando un elemento tipo div
+    let contenedor = document.createElement("div");
+    //innerHTML con una plantilla
+    contenedor.innerHTML = `<h4> ID: ${prod.id} </h4>
+                            <p>  Producto: ${prod.titulo} </p>
+                            <p><b> $${prod.precio} </b></p>`;
+
+    document.body.appendChild(contenedor);
 }
 
 
