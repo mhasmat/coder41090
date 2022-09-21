@@ -37,6 +37,7 @@ const botonSesion = document.getElementById('sesion');
 //evento a disparar con el boton
 botonSesion.addEventListener('click', iniciarSesion);
 
+
 //seccion tarjetas
 const apiData = '../productos.json';
 //capturo el contenedor de las tarjetas
@@ -77,17 +78,23 @@ fetch(`${apiData}`)
 
 const lista = document.querySelector('#listaCarrito');
 
-let products = [
-  { nombre: 'Cupcakes', precio: 500 },
-  { nombre: 'Alfajorcitos', precio: 100 },
-  { nombre: 'Petit Fours', precio: 800 },
-  { nombre: 'Cookies', precio: 900 },
+//incorporando arrays
+//interactuar con HTML
+const productos = [
+    { id: 1, titulo: "Cupcakes", precio: 500 },
+    { id: 2, titulo: "Alfajorcitos", precio: 100 },
+    { id: 3, titulo: "Petit Fours", precio: 800 },
+    { id: 4, titulo: "Cookies", precio: 900 },     
 ];
 
-let listado = products.forEach((item) => {
-  document.write(item.nombre);
-});
+//recorriendo el array de objetos
+for (let prod of productos) {
+    //creando un elemento tipo div
+    let contenedor = document.createElement("div");
+    //innerHTML con una plantilla
+    contenedor.innerHTML = `<h4> ID: ${prod.id} </h4>
+                            <p>  Producto: ${prod.titulo} </p>
+                            <p><b> $${prod.precio} </b></p>`;
 
-let li = document.createElement('li');
-li.innerHTML = listado;
-lista.appendChild(li);
+    document.body.appendChild(contenedor);
+}
