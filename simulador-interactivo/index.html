@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    
   </head>
   <body>
     <div class="contenedor-login">
@@ -21,11 +22,17 @@
       </p>
     </div>
     <hr />
-    <div class="container-fluid">
+    <main class="container-fluid">
       <h1 class="card-header">Tienda Dulce</h1>
       <h3 class="card-header">Especialidades</h3>
 
-      <div class="row justify-content-md-center">
+      <div id="contenedor-productos" class="container row text-center">        
+      </div>
+      <div id="visor-img"></div>
+      
+      <div id="listaCarrito"></div>
+
+      <!-- <div class="row justify-content-md-center">
         <div class="col-sm col-md-auto col-lg-auto col-xl-auto">
           <div class="card mt-3" style="width: 14rem">
             <img src="img/cupcakes.jpg" class="card-img-top" alt="cupcakes" />
@@ -90,9 +97,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
