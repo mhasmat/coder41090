@@ -56,7 +56,21 @@ for (let prod of productos) {
                             <p><b> $${prod.precio} </b></p>`;
 
     document.body.appendChild(contenedor);
-}
+  }
+  
+  //carrito
+  let carrito = [];
+  const agregarCarrito = document.getElementById("agregar");
+
+  const addCarrito = () => {
+    for (const producto of productos) {
+      carrito.push(producto.id);
+    }
+    console.log(carrito);
+  }
+
+agregarCarrito.addEventListener('click', addCarrito);
+
 
 
 
