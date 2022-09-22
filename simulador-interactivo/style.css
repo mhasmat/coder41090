@@ -1,4 +1,71 @@
-body {
-    background-color: rgb(157, 234, 236);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+body {
+  background-color: rgb(224, 236, 157);
+  /* background-image: url('../img/pasteles2.jpg'); */
+  /* background-image: url('../img/bakery.jpg'); */
+  background-size: cover;
+}
+
+#login {
+  text-align: right;
+}
+
+#encabezado {
+  text-align: right;
+  color: #000;
+  font-weight: 600;
+  background-color: rgba(231, 221, 221, 0.2);
+}
+
+.contenedor-login {
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  margin-right: 20px;
+  gap: 10px;
+}
+
+hr {
+  margin-top: 0;
+}
+
+h1,
+h3 {
+  color: #000;
+  font-weight: 700;
+}
+
+#contenedor-productos {
+  max-width: 1200px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.producto {
+  max-width: 20%;
+  padding: 5px;
+  margin: 10px;
+  box-shadow: 2px 6px 3px 3px rgba(175, 171, 171, 0.6);
+  background-color: rgb(144, 246, 250);
+  border-radius: 10px;
+}
+
+h4 {
+  color: #000;
+}
