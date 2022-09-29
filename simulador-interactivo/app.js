@@ -17,6 +17,7 @@ function intentosLogin() {
 function validarUsuario() {
   if (nombreIngresado === usuarioGuardado) {
     encabezado.innerHTML += `Hola ${usuarioGuardado.toUpperCase()}, bienvenido!`;
+    guardarEnLocal('user', JSON.stringify(nombreIngresado));
   } else {
     encabezado.innerHTML += `El usuario no es válido. Intentos agotados.`;
   }
@@ -29,6 +30,8 @@ const iniciarSesion = () => {
   if (validarUsuario) {
     //para remover el evento una vez q se inicia sesion
     botonSesion.removeEventListener('click', iniciarSesion);
+    const usuarioEnLocal = JSON.parse(localStorage.getItem('user'));
+    console.log(usuarioEnLocal);
   }
 };
 
@@ -37,63 +40,103 @@ const botonSesion = document.getElementById('sesion');
 //evento a disparar con el boton
 botonSesion.addEventListener('click', iniciarSesion);
 
-//seccion tarjetas
-const apiData = 'productos.json';
-//capturo el contenedor de las tarjetas
-const contenedor = document.getElementById('contenedor-productos');
+// //seccion tarjetas
+// const apiData = 'productos.json';
+// //capturo el contenedor de las tarjetas
+// const contenedor = document.getElementById('contenedor-productos');
 
-//llamada al endpoint donde está la data
-fetch(`${apiData}`)
-  .then((response) => response.json())
-  .then((productos) => {
-    //recorro el array de objetos con el forEach
-    productos.forEach((producto) => {
-      //creo un elemento de tipo div
-      const div = document.createElement('div');
-      //le agrego la clase producto al div
-      div.classList.add('producto');
-      //inyecto la data en el html
-      div.innerHTML = `
-              <img src=${producto.img} alt="${producto.nombre}" id="img-tarjetas">
-              <h4>${producto.nombre}</h4>
-              <p>${producto.descripcion}</p>
-              <p>${producto.precio}</p>
-              <button class="btn btn-warning btn-comprar">Comprar</button>
-              <button class="btn btn-success btn-carrito">Carrito</button>
-              `;
-      //le agrego el hijo(div) al padre(contenedor)
-      contenedor.appendChild(div);
+// //llamada al endpoint donde está la data
+// fetch(`${apiData}`)
+//   .then((response) => response.json())
+//   .then((productos) => {
+//     //recorro el array de objetos con el forEach
+//     productos.forEach((producto) => {
+//       //creo un elemento de tipo div
+//       const div = document.createElement('div');
+//       //le agrego la clase producto al div
+//       div.classList.add('producto');
+//       //inyecto la data en el html
+//       div.innerHTML = `
+//               <img src=${producto.img} alt="${producto.nombre}" id="img-tarjetas">
+//               <h4>${producto.nombre}</h4>
+//               <p>${producto.descripcion}</p>
+//               <p>${producto.precio}</p>
+//               <button class="btn btn-warning btn-comprar">Comprar</button>
+//               <button class="btn btn-success btn-carrito">Carrito</button>
+//               `;
+//       //le agrego el hijo(div) al padre(contenedor)
+//       contenedor.appendChild(div);
 
-      //funcion ampliar
-      let visor = document.getElementById('visor-img');
-      let imgTarjetas = document.getElementById('img-tarjetas');
-      productos.forEach(() => {
-        imgTarjetas.addEventListener('click', function ampliar() {
-          imgTarjetas.style.transform = 'scale(1.9)';
-        });
-      });
-    });
-  });
+//       //funcion ampliar
+//       let visor = document.getElementById('visor-img');
+//       let imgTarjetas = document.getElementById('img-tarjetas');
+//       productos.forEach(() => {
+//         imgTarjetas.addEventListener('click', function ampliar() {
+//           imgTarjetas.style.transform = 'scale(1.9)';
+//         });
+//       });
+//     });
+//   });
 
-const lista = document.querySelector('#listaCarrito');
-
-//incorporando arrays
-//interactuar con HTML
-const productos = [
-  { id: 1, titulo: 'Cupcakes', precio: 500 },
-  { id: 2, titulo: 'Alfajorcitos', precio: 100 },
-  { id: 3, titulo: 'Petit Fours', precio: 800 },
-  { id: 4, titulo: 'Cookies', precio: 900 },
+const stock = [
+  {
+    id: 1,
+    nombre: 'Cupcakes',
+    precio: 500,
+    minimo: 6,
+    descripcion: 'saraza',
+    img: 'img/cupcakes.jpg',
+  },
+  {
+    id: 2,
+    nombre: 'Alfajorcitos',
+    precio: 100,
+    minimo: 12,
+    descripcion: 'saraza',
+    img: 'img/alfajorcitos.jpg',
+  },
+  {
+    id: 3,
+    nombre: 'Petit Fours',
+    precio: 800,
+    minimo: 6,
+    descripcion: 'saraza',
+    img: 'img/petitFours.png',
+  },
+  {
+    id: 4,
+    nombre: 'Cookies',
+    precio: 900,
+    minimo: 12,
+    descripcion: 'saraza',
+    img: 'img/cookies.jpg',
+  },
 ];
 
-//recorriendo el array de objetos
-for (let prod of productos) {
-  //creando un elemento tipo div
-  let contenedor = document.createElement('div');
-  //innerHTML con una plantilla
-  contenedor.innerHTML = `<h4> ID: ${prod.id} </h4>
-                            <p>  Producto: ${prod.titulo} </p>
-                            <p><b> $${prod.precio} </b></p>`;
+let lista = document.querySelector('ul#listaCarrito');
+let temp = document.querySelector('template');
+let card = temp.content.querySelector('.card');
 
-  document.body.appendChild(contenedor);
-}
+stock.forEach((elemento) => {
+  let cardClonada = card.cloneNode(true);
+  cardClonada.querySelector('.card-img-top').src = elemento.img;
+  cardClonada.querySelector('h4').innerText = elemento.nombre;
+  cardClonada.querySelector('p').innerText = elemento.descripcion;
+  cardClonada.querySelector('.card-footer').innerText = `$ ${elemento.precio}`;
+
+  lista.appendChild(cardClonada);
+
+  cardClonada.querySelector('button').addEventListener('click', () => {
+    alert('Agregó al carrito');
+  });
+});
+
+//guardar en localStorage
+const guardarEnLocal = (clave, valor) => {
+  localStorage.setItem(clave, valor);
+};
+
+guardarEnLocal('listaProductos', JSON.stringify(stock));
+
+const almacenado = JSON.parse(localStorage.getItem('listaProductos'));
+console.log(almacenado);

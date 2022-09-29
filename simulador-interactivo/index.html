@@ -12,7 +12,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./style.css" />
-    
   </head>
   <body>
     <div class="contenedor-login">
@@ -26,78 +25,26 @@
       <h1 class="card-header">Tienda Dulce</h1>
       <h3 class="card-header">Especialidades</h3>
 
-      <div id="contenedor-productos" class="container row text-center">        
+      <div id="contenedor-productos">
+        <!-- <div id="visor-img"></div> -->
+
+        <ul id="listaCarrito" class="container row text-center">
+          <template>
+            <div class="card" style="width: 15rem">
+              <img src="" class="card-img-top" alt="" />
+              <div class="card-body">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text</p>
+                <button href="" class="btn btn-primary add">
+                  Agregar al Carrito
+                </button>
+              </div>
+              <div class="card-footer">Card footer</div>
+            </div>
+          </template>
+        </ul>     
       </div>
-      <div id="visor-img"></div>
-      
-      <div id="listaCarrito"></div>
-
-      <!-- <div class="row justify-content-md-center">
-        <div class="col-sm col-md-auto col-lg-auto col-xl-auto">
-          <div class="card mt-3" style="width: 14rem">
-            <img src="img/cupcakes.jpg" class="card-img-top" alt="cupcakes" />
-            <div class="card-body">
-              <h5 class="card-title">Producto 1</h5>
-              <p class="card-text">Mínimo 6 unidades</p>
-              <button class="btn btn-primary" id="agregar">Agregar al Carrito</button>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">$500.-</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm col-md-auto col-lg-auto col-xl-autocol-md-4">
-          <div class="card mt-3" style="width: 14rem">
-            <img
-              src="img/alfajorcitos.jpg"
-              class="card-img-top"
-              alt="alfajorcitos"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Producto 2</h5>
-              <p class="card-text">Por docena</p>
-              <button class="btn btn-primary" id="agregar">Agregar al Carrito</button>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">$100.-</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm col-md-auto col-lg-auto col-xl-auto">
-          <div class="card mt-3" style="width: 14rem">
-            <img
-              src="img/petitFours.png"
-              class="card-img-top"
-              alt="petit fours"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Producto 3</h5>
-              <p class="card-text">Por docena</p>
-              <button class="btn btn-primary" id="agregar">Agregar al Carrito</button>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">$800.-</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm col-md-auto col-lg-auto col-xl-auto">
-          <div class="card mt-3" style="width: 14rem">
-            <img src="img/cookies.jpg" class="card-img-top" alt="cookies" />
-            <div class="card-body">
-              <h5 class="card-title">Producto 4</h5>
-              <p class="card-text">Mínimo 6 unidades por diseño</p>
-              <button class="btn btn-primary" id="agregar">Agregar al Carrito</button>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">$900.-</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    </main>
 
     <script src="app.js" type="module"></script>
     <script
