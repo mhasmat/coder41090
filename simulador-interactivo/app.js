@@ -15,24 +15,23 @@ function intentosLogin() {
 //funcion que valida el nombre de usuario
 //para ver si coincide con el q está guardado
 function validarUsuario() {
-  if (nombreIngresado === usuarioGuardado) {
-    encabezado.innerHTML += `Hola ${usuarioGuardado.toUpperCase()}, bienvenido!`;
-    guardarEnLocal('user', JSON.stringify(nombreIngresado));
-  } else {
-    encabezado.innerHTML += `El usuario no es válido. Intentos agotados.`;
-  }
+  const validacion = nombreIngresado === usuarioGuardado ? true : false;
+  validacion
+    ? (encabezado.innerHTML += `Hola ${usuarioGuardado.toUpperCase()}, bienvenido!`)
+    : (encabezado.innerHTML += `El usuario no es válido. Intentos agotados.`);
+
+  guardarEnLocal('user', JSON.stringify(nombreIngresado));
 }
 
 //lo que hace el boton en cuestion
 const iniciarSesion = () => {
   intentosLogin(); //invocando las funciones
   validarUsuario(); //invocando las funciones
-  if (validarUsuario) {
+  validarUsuario &&
     //para remover el evento una vez q se inicia sesion
     botonSesion.removeEventListener('click', iniciarSesion);
-    const usuarioEnLocal = JSON.parse(localStorage.getItem('user'));
-    console.log(usuarioEnLocal);
-  }
+  const usuarioEnLocal = JSON.parse(localStorage.getItem('user'));
+  console.log(usuarioEnLocal);
 };
 
 //capturo el boton desde el DOM
@@ -127,7 +126,7 @@ stock.forEach((elemento) => {
   lista.appendChild(cardClonada);
 
   cardClonada.querySelector('button').addEventListener('click', () => {
-    alert('Agregó al carrito');
+    console.log('Se agregó al carrito ');
   });
 });
 
@@ -139,4 +138,4 @@ const guardarEnLocal = (clave, valor) => {
 guardarEnLocal('listaProductos', JSON.stringify(stock));
 
 const almacenado = JSON.parse(localStorage.getItem('listaProductos'));
-console.log(almacenado);
+console.log('Almacenado:', almacenado);
