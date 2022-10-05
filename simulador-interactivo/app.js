@@ -83,6 +83,7 @@ const stock = [
     nombre: 'Cupcakes',
     precio: 500,
     minimo: 6,
+    inventario: 20,
     descripcion: 'saraza',
     img: 'img/cupcakes.jpg',
   },
@@ -91,6 +92,7 @@ const stock = [
     nombre: 'Alfajorcitos',
     precio: 100,
     minimo: 12,
+    inventario: 40,
     descripcion: 'saraza',
     img: 'img/alfajorcitos.jpg',
   },
@@ -99,6 +101,7 @@ const stock = [
     nombre: 'Petit Fours',
     precio: 800,
     minimo: 6,
+    inventario: 20,
     descripcion: 'saraza',
     img: 'img/petitFours.png',
   },
@@ -107,6 +110,7 @@ const stock = [
     nombre: 'Cookies',
     precio: 900,
     minimo: 12,
+    inventario: 40,
     descripcion: 'saraza',
     img: 'img/cookies.jpg',
   },
@@ -139,3 +143,48 @@ guardarEnLocal('listaProductos', JSON.stringify(stock));
 
 const almacenado = JSON.parse(localStorage.getItem('listaProductos'));
 console.log('Almacenado:', almacenado);
+
+//carrito
+let carrito = [];
+
+const agregarAlCarrito = () => {
+  let productoId = Number(prompt('ID del producto:'));
+  let cantidad = Number(prompt('Cantidad:'));
+  let producto = stock.find((item) => item.id === productoId);
+  producto.cantidad = cantidad;
+  producto.total = producto.precio * cantidad;
+  carrito.push(producto);
+};
+
+agregarAlCarrito();
+agregarAlCarrito();
+
+const calcularTotal = (carrito) => {
+  let total = 0;
+
+  carrito.forEach((producto) => {
+    total += producto.total;
+  });
+  return total;
+};
+
+// alert(`La suma de su carrito da: $ ${calcularTotal(carrito)}`);
+
+const mostrarCarrito = (products) => {
+  const contenedorCarrito = document.querySelector('#contenedor-carrito');
+  contenedorCarrito.innerHTML = `<h3>Carrito</h3>`;
+
+  products.forEach((product) => {
+    const card = document.createElement('card');
+    card.innerHTML += `<div>                      
+                      <h5>${product.nombre}</h5>
+                      <p>Precio: $ ${product.precio}</p>
+                      <p>Cantidad: ${product.cantidad}</p>
+                      <hr>
+                      </div>`;
+
+    contenedorCarrito.appendChild(card);
+  });
+};
+
+mostrarCarrito(carrito);
