@@ -130,7 +130,14 @@ stock.forEach((elemento) => {
   lista.appendChild(cardClonada);
 
   cardClonada.querySelector('button').addEventListener('click', () => {
-    console.log('Se agregó al carrito ');
+    //agregando sweetalert2
+    Swal.fire({
+      position: 'top-start',
+      icon: 'success',
+      title: 'Se agregó al carrito!',
+      showConfirmButton: false,
+      timer: 2000
+    })
   });
 });
 
