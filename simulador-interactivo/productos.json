@@ -30,5 +30,13 @@
     "minimo": 12,
     "descripcion": "saraza",
     "img": "./img/cookies.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Cafecito",
+    "precio": 550,
+    "minimo": 1,
+    "descripcion": "café de autor",
+    "img": "./img/cafecito.jpg"
   }
 ]
