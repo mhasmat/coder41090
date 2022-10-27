@@ -31,7 +31,7 @@ const iniciarSesion = () => {
     //para remover el evento una vez q se inicia sesion
     botonSesion.removeEventListener('click', iniciarSesion);
   const usuarioEnLocal = JSON.parse(localStorage.getItem('user'));
-  console.log(usuarioEnLocal);
+  // console.log(usuarioEnLocal);
 };
 
 //capturo el boton desde el DOM
@@ -43,14 +43,19 @@ botonSesion.addEventListener('click', iniciarSesion);
 //capturo el contenedor de las tarjetas
 const contenedor = document.getElementById('contenedor-productos');
 
-let lista = document.querySelector('ul#listaCarrito');
+let lista = document.querySelector('ul#lista-productos');
 let temp = document.querySelector('template');
 let card = temp.content.querySelector('.card');
+
+// FETCH
+let productosFetch = [];
 
 fetch('productos.json')
   .then((response) => response.json())
   .then((productos) => {
     productos.forEach((elemento) => {
+      productosFetch.push(elemento);
+
       let cardClonada = card.cloneNode(true);
       cardClonada.querySelector('.card-img-top').src = elemento.img;
       cardClonada.querySelector('h4').innerText = elemento.nombre;
@@ -85,7 +90,7 @@ const guardarEnLocal = (clave, valor) => {
 let carrito = [];
 
 const agregarAlCarrito = (productoId, cantidad) => {
-  let producto = producto.find((item) => item.id === productoId);
+  let producto = productosFetch.find((item) => item.id === productoId);
   producto.cantidad = cantidad;
   producto.total = producto.precio * cantidad;
   carrito.push(producto);
@@ -101,14 +106,12 @@ const calcularTotal = (carrito) => {
   return total;
 };
 
-// alert(`La suma de su carrito da: $ ${calcularTotal(carrito)}`);
-
 const mostrarCarrito = (products) => {
   const contenedorCarrito = document.querySelector('#contenedor-carrito');
-  contenedorCarrito.innerHTML = `<h3>Carrito</h3>`;
+  contenedorCarrito.innerHTML = `<h3>Carrito:</h3>`;
 
   products.forEach((product) => {
-    const carritoItem = document.createElement('carritoItem');
+    const carritoItem = document.createElement('ul');
     carritoItem.innerHTML += `                      
                       <h5>${product.nombre}</h5>
                       <p>Precio: $ ${product.precio}</p>
